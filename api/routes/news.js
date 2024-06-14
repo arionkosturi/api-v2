@@ -99,7 +99,9 @@ router.post('/', (req, res, next) => {
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
     description: req.body.description,
-    imgUrl: req.body.imgUrl
+    content: req.body.content,
+    imgUrl: req.body.imgUrl,
+    sourceUrl: req.body.sourceUrl
   });
   article
   .save()
