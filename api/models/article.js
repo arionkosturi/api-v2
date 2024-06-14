@@ -6,6 +6,7 @@ title: String,
 description: String,
 imgUrl: String,
 content: String,
+category: String,
 sourceUrl: String,
 author: String,
 createdAt: Date

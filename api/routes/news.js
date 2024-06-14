@@ -100,8 +100,10 @@ router.post('/', (req, res, next) => {
     title: req.body.title,
     description: req.body.description,
     content: req.body.content,
+    category: req.body.category,
     imgUrl: req.body.imgUrl,
-    sourceUrl: req.body.sourceUrl
+    sourceUrl: req.body.sourceUrl,
+    author: req.body.author
   });
   article
   .save()
