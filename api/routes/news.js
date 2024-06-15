@@ -36,14 +36,16 @@ router.get('/top', (req, res, next) => {
   
 });
 
-router.get('/:articleId', (req, res, next) => {
-    const id = req.params.articleId;
-   Article.findById(id)
+// find by category
+router.get('/category/:category', (req, res, next) => {
+  //  const category = req.params.category;
+   Article.find({category: req.params.category})
    .exec()
    .then(doc => {
     // console.log("From database", doc);
     if(doc) {
       res.status(200).json(doc)
+      console.log(doc);
     } else {
       res.status(404).json({
         message: 'No valid entry found for this id'
@@ -55,6 +57,27 @@ router.get('/:articleId', (req, res, next) => {
       res.status(500).json({error: err});
     }  
   );
+});
+
+router.get('/:articleId', (req, res, next) => {
+  const id = req.params.articleId;
+ Article.findById(id)
+ .exec()
+ .then(doc => {
+  // console.log("From database", doc);
+  if(doc) {
+    res.status(200).json(doc)
+  } else {
+    res.status(404).json({
+      message: 'No valid entry found for this id'
+    });
+  }
+ }).catch(err => 
+  {
+    console.log(err);
+    res.status(500).json({error: err});
+  }  
+);
 });
 router.patch('/:articleId', (req, res, next) => {
     const id = req.params.articleId;
