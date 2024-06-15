@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
   Article.find()
   .exec()
   .then(docs => {
-    console.log(docs);
+    // console.log(docs);
       res.status(200).json(docs);
   })
   .catch(err => {
@@ -24,7 +24,7 @@ router.get('/top', (req, res, next) => {
   Article.find().limit(5)
   .exec()
   .then(docs => {
-    console.log(docs);
+    // console.log(docs);
     res.status(200).json(docs);
   })
   .catch(err => {
@@ -41,7 +41,7 @@ router.get('/:articleId', (req, res, next) => {
    Article.findById(id)
    .exec()
    .then(doc => {
-    console.log("From database", doc);
+    // console.log("From database", doc);
     if(doc) {
       res.status(200).json(doc)
     } else {
@@ -65,7 +65,7 @@ router.patch('/:articleId', (req, res, next) => {
     Article.findOneAndUpdate({ _id: id }, {$set: updateOps})
     .exec()
     .then(result=>{
-      console.log(result);
+      // console.log(result);
       res.status(200).json(result)
     })
     .catch(err => {
@@ -100,8 +100,11 @@ router.post('/', (req, res, next) => {
     title: req.body.title,
     description: req.body.description,
     content: req.body.content,
+    content2: req.body.content2,
+    content3: req.body.content3,
     category: req.body.category,
     imgUrl: req.body.imgUrl,
+    img2Url: req.body.img2Url,
     sourceUrl: req.body.sourceUrl,
     author: req.body.author
   });
