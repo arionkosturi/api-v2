@@ -61,11 +61,14 @@ router.get('/category/:category', (req, res, next) => {
 
 // Search Endpoint
 router.get('/search/:q', (req, res, next) => {
-  //  const category = req.params.category;
    Article.find(
     {
       "$or": [
-       {title: {$regex:req.params.q}}
+       {title: {$regex:req.params.q}},
+       {description: {$regex:req.params.q}},
+       {content: {$regex:req.params.q}},
+       {content2: {$regex:req.params.q}},
+       {content3: {$regex:req.params.q}},
       ]
       
     })
