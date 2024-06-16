@@ -59,6 +59,37 @@ router.get('/category/:category', (req, res, next) => {
   );
 });
 
+// Search Endpoint
+router.get('/search/:q', (req, res, next) => {
+  //  const category = req.params.category;
+   Article.find(
+    {
+      "$or": [
+       {title: {$regex:req.params.q}}
+      ]
+      
+    })
+   .exec()
+   .then(doc => {
+
+    console.log("From database", doc);
+    if(doc) {
+      res.status(200).json(doc)
+      console.log(doc);
+    } else {
+      res.status(404).json({
+        message: 'No valid entry found for this id'
+      });
+    }
+   }).catch(err => 
+    {
+      console.log(err);
+      res.status(500).json({error: err});
+    }  
+  );
+});
+
+
 router.get('/:articleId', (req, res, next) => {
   const id = req.params.articleId;
  Article.findById(id)
