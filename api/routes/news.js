@@ -63,6 +63,7 @@ router.get('/category/:category', (req, res, next) => {
 router.get('/search/:q', (req, res, next) => {
    Article.find(
     {
+      
       "$or": [
        {title: {$regex:req.params.q}},
        {description: {$regex:req.params.q}},
