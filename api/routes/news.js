@@ -74,11 +74,10 @@ router.get('/search/:q', (req, res, next) => {
     })
    .exec()
    .then(doc => {
-
-    console.log("From database", doc);
+    // console.log("From database", doc);
     if(doc) {
       res.status(200).json(doc)
-      console.log(doc);
+      // console.log(doc);
     } else {
       res.status(404).json({
         message: 'No valid entry found for this id'
