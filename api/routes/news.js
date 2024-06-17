@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
 
 //TOP 10
 router.get('/top', (req, res, next) => {
-  Article.find().limit(10)
+  Article.find().limit(10).sort({createdAt: -1})
   .exec()
   .then(docs => {
     // console.log(docs);
