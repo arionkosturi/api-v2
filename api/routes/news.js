@@ -5,7 +5,7 @@ const Article = require('../models/article');
 
 // ALL
 router.get('/', (req, res, next) => {
-  Article.find()
+  Article.find().sort({createdAt: -1})
   .exec()
   .then(docs => {
     // console.log(docs);
@@ -39,7 +39,7 @@ router.get('/top', (req, res, next) => {
 // find by category
 router.get('/category/:category', (req, res, next) => {
   //  const category = req.params.category;
-   Article.find({category: req.params.category})
+   Article.find({category: req.params.category}).sort({createdAt: -1})
    .exec()
    .then(doc => {
     // console.log("From database", doc);
@@ -72,7 +72,7 @@ router.get('/search/:q', (req, res, next) => {
        {content3: {$regex:req.params.q}},
       ]
       
-    })
+    }).sort({createdAt: -1})
    .exec()
    .then(doc => {
     // console.log("From database", doc);
