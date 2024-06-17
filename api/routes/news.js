@@ -5,7 +5,12 @@ const Article = require('../models/article');
 
 // ALL
 router.get('/', (req, res, next) => {
-  Article.find().sort({createdAt: -1})
+  const page = req.query.p || 0;
+  const articlesPerPage = 3;
+  Article.find()
+  .sort({createdAt: -1})
+  .skip( page * articlesPerPage)
+  .limit(articlesPerPage)
   .exec()
   .then(docs => {
     // console.log(docs);
