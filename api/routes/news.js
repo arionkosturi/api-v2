@@ -7,8 +7,8 @@ const Article = require('../models/article');
 router.get('/', (req, res, next) => {
   const page = req.query.p || 0;
   const articlesPerPage = 9;
-  Article.find()
-  .sort({createdAt: - 1})
+  Article.find() 
+  .sort({createdAt: -1})
   .skip( page * articlesPerPage)
   .limit(articlesPerPage)
   .exec()
@@ -70,11 +70,25 @@ router.get('/search/:q', (req, res, next) => {
     {
       
       "$or": [
-       {title: {$regex:req.params.q}},
-       {description: {$regex:req.params.q}},
-       {content: {$regex:req.params.q}},
-       {content2: {$regex:req.params.q}},
-       {content3: {$regex:req.params.q}},
+       {title: {
+        $regex:req.params.q,
+        "$options": "i" }},
+       {description: {
+        $regex:req.params.q,
+        "$options": "i"
+      }},
+       {content: {
+        $regex:req.params.q,
+        "$options": "i"
+      }},
+       {content2: {
+        $regex:req.params.q,
+      "$options": "i"
+      }},
+       {content3: {
+        $regex:req.params.q,
+      "$options": "i"
+      }},
       ]
       
     }).sort({createdAt: -1})
