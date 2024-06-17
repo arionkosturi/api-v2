@@ -13,6 +13,8 @@ category: String,
 sourceUrl: String,
 author: String,
 createdAt: Date
-});
+},
+{ timestamps: true }
+);
 
 module.exports = mongoose.model('Article', articleSchema);
