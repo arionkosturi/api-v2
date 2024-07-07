@@ -99,6 +99,18 @@ router.get("/search/:q", (req, res, next) => {
           $options: "i",
         },
       },
+      {
+        author: {
+          $regex: req.params.q,
+          $options: "i",
+        },
+      },
+      {
+        category: {
+          $regex: req.params.q,
+          $options: "i",
+        },
+      },
     ],
   })
     .sort({ createdAt: -1 })
