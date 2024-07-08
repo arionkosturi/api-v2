@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
   const articlesPerPage = 9;
 
   Article.find()
-    .sort({ createdAt: 1 })
+    .sort({ createdAt: -1 })
     .skip(page * articlesPerPage)
     .limit(articlesPerPage)
     .exec()
