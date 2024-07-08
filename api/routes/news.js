@@ -28,7 +28,7 @@ router.get("/", (req, res, next) => {
 
 //TOP 10
 router.get("/top", (req, res, next) => {
-  Article.find()
+  Article.find({ $or: { isPublished: true } })
     .limit(10)
     .sort({ createdAt: -1 })
     .exec()
