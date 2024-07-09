@@ -114,6 +114,7 @@ router.get("/search/:q", (req, res, next) => {
         },
       },
     ],
+    $and: [{ isPublished: true }],
   })
     .sort({ createdAt: -1 })
     .exec()
